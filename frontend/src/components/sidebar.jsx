@@ -1,7 +1,8 @@
 import React from 'react'
 import Logo from '../assets/elogo.png'
 import Profile from '../assets/profile.jpg'
-import {LayoutDashboard, BadgeDollarSign, LineChart, AreaChart, Settings} from "lucide-react"
+import {LayoutDashboard, BadgeDollarSign, LineChart, AreaChart, Settings, ChevronRight} from "lucide-react"
+import { motion } from 'framer-motion'
 
 const navLinks = [
   {
@@ -26,22 +27,37 @@ const navLinks = [
   }
 ]
 
+const variants = {
+  open: { width: "15%" },
+  closed: { width: "5%" },
+}
+
 const Sidebar = () => {
 
   const [activeLink, setActiveLik] = React.useState(0)
+  const [isOpen, setIsOpen] = React.useState(false)
   
   return (
-    <div className='py-12 px-10 flex flex-col border border-r-1 w-1/6 h-screen'>
-        <div className='flex items-center'>
-          <img src={Logo} className='w-14'/>
-          <span className='text-xl font-bold text-primary'>ExpenseTracker</span>
+    <motion.div
+    animate = {isOpen ? "open": "closed"}
+    variants = {variants}
+    className={isOpen ? 'py-12 px-6 w-1/2 flex flex-col border relative h-screen' : 'py-12 px-2 flex flex-col border border-r- relative h-screen items-center'}>
+        <div className='flex items-center logo-div justify-center'>
+          <img src={Logo} className={'w-14'}/>
+          <span className={isOpen ? 'text-xl font-bold text-primary block' : 'hidden'}>Expense<span className='text-yellow'>Tracker</span></span>
+        </div>
+
+        <div 
+        onClick={() => setIsOpen(!isOpen)}
+        className='w-5 h-5 bg-primary rounded-full absolute right-[-10px] top-[55px] flex items-center justify-center'>
+          <ChevronRight className='text-secondary'/>
         </div>
 
         <div className='mt-8'>
           <div className='flex flex-col justify-center items-center'>
-            <img src={Profile} className='w-20 rounded-full border border-r-1 mb-3'/>
-            <span className='text-center text-xl font-bold'>Ervender</span>
-            <span className='text-center text-sm text-tertiary'>Software Developer</span>
+            <img src={Profile} className={'rounded-full border border-r-1 mb-3' + (isOpen ? ' w-20' : ' w-14')}/>
+            <span className={isOpen ? 'text-center text-xl font-bold' : 'hidden'}>Ervender</span>
+            <span className='text-center text-sm text-yellow'>Software Developer</span>
           </div>
         </div>
 
@@ -50,15 +66,15 @@ const Sidebar = () => {
             <div 
             key={index}
             className={'flex items-center gap-7 cursor-pointer p-2 rounded' + 
-            (activeLink === index ? ' bg-primary text-secondary' : ' text-tertiary')} 
+            (activeLink === index ? ' bg-primary text-yellow' : ' text-tertiary')} 
             onClick={() => setActiveLik(index)}
             >
               <link.icon/>
-              <span className=''>{link?.name}</span>
+              <span className={isOpen ? 'block' : 'hidden'}>{link?.name}</span>
             </div>
           ))}
         </div>
-    </div>
+    </motion.div>
   )
 }
 

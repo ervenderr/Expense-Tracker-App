@@ -1,17 +1,19 @@
 
 import './App.css'
+import Dashboard from './components/Dashboard/Dashboard'
 import Sidebar from './components/sidebar'
 
 function App() {
 
   return (
     <>
-    {/* Navigation bar */}
-      <Sidebar />
-      
-    {/* Sidebar */}
+    <div className='flex'>
+      {/* Navigation bar */}
+        <Sidebar />
 
-    {/* Main Content */}
+      {/* Main Content */}
+      <Dashboard />
+    </div>
     </>
   )
 }
