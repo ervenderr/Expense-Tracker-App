@@ -28,8 +28,8 @@ const navLinks = [
 ]
 
 const variants = {
-  open: { width: "15%" },
-  closed: { width: "5%" },
+  open: { width: "20rem" },
+  closed: { width: "5rem" },
 }
 
 const Sidebar = () => {
@@ -57,7 +57,7 @@ const Sidebar = () => {
           <div className='flex flex-col justify-center items-center'>
             <img src={Profile} className={'rounded-full border border-r-1 mb-3' + (isOpen ? ' w-20' : ' w-14')}/>
             <span className={isOpen ? 'text-center text-xl font-bold' : 'hidden'}>Ervender</span>
-            <span className='text-center text-sm text-yellow'>Software Developer</span>
+            <span className='text-center text-sm text-tertiary'>Software Developer</span>
           </div>
         </div>
 
