@@ -1,31 +1,9 @@
 import React from 'react'
 import Logo from '../assets/elogo.png'
 import Profile from '../assets/profile.jpg'
-import {LayoutDashboard, BadgeDollarSign, LineChart, AreaChart, Settings, ChevronRight} from "lucide-react"
 import { motion } from 'framer-motion'
-
-const navLinks = [
-  {
-    name: 'Dashboard',
-    icon: LayoutDashboard,
-  },
-  {
-    name: 'Transactions',
-    icon: BadgeDollarSign,
-  },
-  {
-    name: 'Expenses',
-    icon: LineChart,
-  },
-  {
-    name: 'Income',
-    icon: AreaChart,
-  },
-  {
-    name: 'Settings',
-    icon: Settings,
-  }
-]
+import { navLinks } from './Utils/NavLinks'
+import { ChevronRight } from 'lucide-react'
 
 const variants = {
   open: { width: "20rem" },
@@ -66,7 +44,8 @@ const Sidebar = () => {
             <div 
             key={index}
             className={'flex items-center gap-7 cursor-pointer p-2 rounded' + 
-            (activeLink === index ? ' bg-primary text-yellow' : ' text-tertiary')} 
+            (activeLink === index ? ' bg-primary text-yellow' : ' text-tertiary') + 
+            ' hover:bg-primary hover:text-yellow'} 
             onClick={() => setActiveLik(index)}
             >
               <link.icon/>
