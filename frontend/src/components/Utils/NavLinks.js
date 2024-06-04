@@ -1,6 +1,12 @@
 
 import {LayoutDashboard, BadgeDollarSign, LineChart, AreaChart, Settings, ChevronRight} from "lucide-react"
 
+export {LayoutDashboard}
+export {BadgeDollarSign}
+export {LineChart}
+export {AreaChart}
+export {Settings}
+
 export const navLinks = [
   {
     id: 1,

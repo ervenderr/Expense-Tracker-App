@@ -10,9 +10,7 @@ const variants = {
   closed: { width: "5rem" },
 }
 
-const Sidebar = () => {
-
-  const [activeLink, setActiveLik] = React.useState(0)
+function Sidebar ({activeLink, setActiveLink}) {
   const [isOpen, setIsOpen] = React.useState(false)
   
   return (
@@ -28,7 +26,7 @@ const Sidebar = () => {
         <div 
         onClick={() => setIsOpen(!isOpen)}
         className='w-5 h-5 bg-primary rounded-full absolute right-[-10px] top-[55px] flex items-center justify-center'>
-          <ChevronRight className='text-secondary'/>
+          <ChevronRight className={'text-yellow' + (isOpen ? ' rotate-180' : '')}/>
         </div>
 
         <div className='mt-8'>
@@ -46,7 +44,7 @@ const Sidebar = () => {
             className={'flex items-center gap-7 cursor-pointer p-2 rounded' + 
             (activeLink === index ? ' bg-primary text-yellow' : ' text-tertiary') + 
             ' hover:bg-primary hover:text-yellow'} 
-            onClick={() => setActiveLik(index)}
+            onClick={() => setActiveLink(index)}
             >
               <link.icon/>
               <span className={isOpen ? 'block' : 'hidden'}>{link?.name}</span>
