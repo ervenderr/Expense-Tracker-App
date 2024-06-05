@@ -11,13 +11,13 @@ const variants = {
 }
 
 function Sidebar ({activeLink, setActiveLink}) {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(true)
   
   return (
     <motion.div
     animate = {isOpen ? "open": "closed"}
     variants = {variants}
-    className={isOpen ? 'py-12 px-6 w-1/2 flex flex-col border relative h-screen' : 'py-12 px-2 flex flex-col border border-r- relative h-screen items-center'}>
+    className={isOpen ? 'py-12 px-6 flex flex-col border relative h-screen' : 'py-12 px-2 flex flex-col border border-r- relative h-screen items-center'}>
         <div className='flex items-center logo-div justify-center'>
           <img src={Logo} className={'w-14'}/>
           <span className={isOpen ? 'text-xl font-bold text-primary block' : 'hidden'}>Expense<span className='text-yellow'>Tracker</span></span>
