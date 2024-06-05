@@ -12,7 +12,7 @@ export const GlobalProvider = ({children}) => {
     const [error, setError] = React.useState(null)
 
     const addExpenses = async (expenses) => {
-        const response = await axios.post(`${baseURL}/expenses`, asyns)
+        const response = await axios.post(`${baseURL}/add-expense`, expenses)
             .catch((error) => {
                 setError(error.response.data.message)
             })
