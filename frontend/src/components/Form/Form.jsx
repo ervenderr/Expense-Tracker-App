@@ -23,13 +23,37 @@ function Form() {
     const [errors, setErrors] = React.useState({})
   
     const validateForm = () => {
-      if(!title || !amount || !category || !description || !date) {
-        return false
+      
+      let isValid = true
+      const errors = {}
+  
+      if(!title) {
+        errors.title = "Title is required"
+        isValid = false
       }
-      if(amount <= 0 || !amount === 'number') {
-        return false
+  
+      if(!amount) {
+        errors.amount = "Amount is required"
+        isValid = false
       }
-      return true
+  
+      if(!category) {
+        errors.category = "Category is required"
+        isValid = false
+      }
+  
+      if(!description) {
+        errors.description = "Description is required"
+        isValid = false
+      }
+  
+      if(!date) {
+        errors.date = "Date is required"
+        isValid = false
+      }
+  
+      setErrors(errors)
+      return isValid
     }
 
   const handleSubmit = (e) => {
@@ -37,11 +61,11 @@ function Form() {
 
     if(!validateForm()) {
       setErrors({
-        title: "Please enter a title",
-        amount: "Please enter an amount",
-        category: "Please select a category",
-        description: "Please enter a description",
-        date: "Please enter a date"
+        title: !title ? "Title is required" : "",
+        amount: !amount ? "Amount is required" : "",
+        category: !category ? "Category is required" : "",
+        description: !description ? "Description is required" : "",
+        date: !date ? "Date is required" : ""
       })
       return console.log(validateForm())
     }

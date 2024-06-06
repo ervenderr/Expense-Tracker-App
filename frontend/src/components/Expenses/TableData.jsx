@@ -1,39 +1,102 @@
-import React from 'react'
-import { Box, Typography } from '@mui/material'
-import { DataGrid } from '@mui/x-data-grid';
+import React, { useEffect } from 'react'
+import { Box, Checkbox } from '@mui/material'
+import DataTable from 'react-data-table-component'
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import axios from 'axios';
+
+const sortIcon = <ArrowDownwardIcon />;
+const selectProps = { indeterminate: isIndeterminate => isIndeterminate };
+
+const customStyles = {
+  headCells: {
+    style: {
+      fontSize: '16px',
+      fontWeight: 'bold',
+      color: '#f1c40f',
+      backgroundColor: '#000',
+    },
+  },
+  headRows: {
+    style: {
+      fontSize: '16px',
+      fontWeight: 'bold',
+      color: '#000',
+      backgroundColor: '#f1c40f',
+    },
+  },
+  cells: {
+    style: {
+      fontSize: '16px',
+      color: '#000',
+    },
+  },
+}
 
 function TableData() {
 
-    const rows = [
-        { id: 1, col1: 'Hello', col2: 'World' },
-        { id: 2, col1: 'DataGridPro', col2: 'is Awesome' },
-        { id: 3, col1: 'MUI', col2: 'is Amazing' },
-      ];
+  const columns = [
+    {
+      name: 'Title',
+      selector: row => row.title,
+    },
+    {
+      name: 'Amount',
+      selector: row => row.amount,
+    },
+    {
+      name: 'Category',
+      selector: row => row.category,
+    },
+    {
+      name: 'Description',
+      selector: row => row.description,
+    },
+    {
+      name: 'Date',
+      selector: row => row.date,
+    },
+  ];
+  
+  const [data, setData] = React.useState([])
 
-      const columns = [
-        { field: 'col1', headerName: 'Column 1', width: 150 },
-        { field: 'col2', headerName: 'Column 2', width: 150 },
-      ];
+
+  useEffect(() => {
+    const fetchExpenses = async () => {
+      axios.get('http://localhost:5000/api/v1/get-expense')
+      .then((response) => setData(response.data))
+      .catch((error) => console.log(error))
+    }
+    fetchExpenses()
+  }, [])
+
 
   return (
     <div className='lg:col-span-2 col-span-2 w-full py-5'>
         <p className='text-2xl text-center mb-1 font-semibold'>TRANSACTION</p>
         <Box
             sx={{
-                display: 'inline-flex',
-                justifyContent: 'center',
-                alignItems: 'center',
+                display: 'flex flex-col',
+                justifyContent: 'start',
+                alignItems: 'start',
                 width: '100%',
                 height: 550,
-            }}
-        >
-            <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
-            />
+                borderStyle: 'solid',
+                borderColor: 'primary',
+                borderWidth: 1,
+                borderRadius: 2,
 
+            }}>
+            <DataTable
+              columns={columns}
+              data={data}
+              fontSize='16px'
+              pagination
+              selectableRowsComponent={Checkbox}
+              selectableRowsComponentProps={selectProps}
+              sortIcon={sortIcon}
+              fixedHeader={true}
+              customStyles={customStyles}
+            />
         </Box>
     </div>
   )
