@@ -60,6 +60,12 @@ function Form() {
       return isValid
     }
 
+    const fetchExpenses = async () => {
+      axios.get('http://localhost:5000/api/v1/get-expense')
+      .then((response) => setData(response.data))
+      .catch((error) => console.log(error))
+    }
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
@@ -76,6 +82,8 @@ function Form() {
     // addExpenses(inputState)
     console.log("inputState", inputState)
     setShowAlert(true);
+    fetchExpenses()
+
 
     setTimeout(() => {
       setShowAlert(false);
