@@ -13,7 +13,7 @@ const TransactionHistory = () => {
     return (
         <div className='w-full h-full border rounded-lg bg-white'>
             <div className='flex items-center justify-between px-8 py-3 border-b bg-gray-50'>
-                <h1 className='text-lg font-bold'>Transaction History</h1>
+                <h1 className='text-lg font-bold text-primary'>Transaction History</h1>
                 <div className='flex items-center'>
                     <span className='text-sm text-gray-600'>Sort By</span>
                     <select className='ml-2 border rounded-md p-1 text-sm'>

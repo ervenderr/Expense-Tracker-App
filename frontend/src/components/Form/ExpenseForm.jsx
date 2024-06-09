@@ -2,6 +2,8 @@ import React from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useGlobalContext } from '../../context/global';
+import SimpleAlert from '../../Alert/PopupAlert';
+
 
 function Form() {
 
@@ -21,6 +23,8 @@ function Form() {
     }
 
     const [errors, setErrors] = React.useState({})
+
+    const [showAlert, setShowAlert] = React.useState(false)
   
     const validateForm = () => {
       
@@ -71,12 +75,22 @@ function Form() {
     }
     // addExpenses(inputState)
     console.log("inputState", inputState)
+    setShowAlert(true);
+
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 5000);
   }
+
+  const closeAlert = () => {
+    setShowAlert(false);
+  };
   
 
   return (
     <div className='w-full py-8 px-4 sm:px-10 border flex flex-col justify-center items-center my-5 mt-14 rounded-md' onSubmit={handleSubmit}>
       <h1 className='text-3xl font-extrabold mb-5'>Add Expenses</h1>
+      {showAlert && <SimpleAlert message="Expense added successfully!" onClose={closeAlert} />}
       <div className='w-full mb-4'>
         <input
           type="text"

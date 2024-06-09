@@ -4,7 +4,7 @@ import Dashboard from './components/Dashboard/Dashboard'
 import Sidebar from './components/sidebar'
 import Transaction from './components/Transaction/Transaction'
 import Expenses from './components/Expenses/Expenses'
-import { Income } from './components/Income/Income'
+import Income  from './components/Income/Income'
 import Setting from './components/Settings/Setting'
 import { useGlobalContext } from './context/global'
 
@@ -29,7 +29,7 @@ function App() {
       case 4:
         return <Setting/>
       default:
-        return <Dashboard/>
+        return activeLink
     }
   }
 

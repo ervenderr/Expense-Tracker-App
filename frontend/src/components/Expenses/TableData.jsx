@@ -13,7 +13,7 @@ const customStyles = {
       fontSize: '16px',
       fontWeight: 'bold',
       color: '#f1c40f',
-      backgroundColor: '#000',
+      backgroundColor: '#2c2b30',
     },
   },
   headRows: {
@@ -21,7 +21,7 @@ const customStyles = {
       fontSize: '16px',
       fontWeight: 'bold',
       color: '#000',
-      backgroundColor: '#f1c40f',
+      backgroundColor: '#2c2b30',
     },
   },
   cells: {
@@ -72,7 +72,7 @@ function TableData() {
 
   return (
     <div className='lg:col-span-2 col-span-2 w-full py-5'>
-        <p className='text-2xl text-center mb-1 font-semibold'>TRANSACTION</p>
+        <p className='text-2xl text-center mb-1 font-semibold text-primary'>TRANSACTION</p>
         <Box
             sx={{
                 display: 'flex flex-col',
