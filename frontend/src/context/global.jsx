@@ -18,9 +18,31 @@ export const GlobalProvider = ({children}) => {
             })
     }
 
+    const fetchExpenses = async () => {
+        try {
+          const response = await axios.get(`${baseURL}/get-expense`);
+          setExpenses(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+    const deleteExpenses = async (id) => {
+        try {
+            confirm("Are you sure you want to delete this expense?");
+            const response = await axios.delete(`${baseURL}/delete-expense/${id}`);
+            fetchExpenses();
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
         <GlobalContext.Provider value={{
-            addExpenses
+            expenses,
+            addExpenses,
+            fetchExpenses,
+            deleteExpenses,
         }}>
             {children}
         </GlobalContext.Provider>

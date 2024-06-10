@@ -7,15 +7,16 @@ import SimpleAlert from '../../Alert/PopupAlert';
 
 function Form() {
 
-  const {addExpenses} = useGlobalContext()
-  const [inputState, setInputState] = React.useState({
+  const {addExpenses, fetchExpenses} = useGlobalContext()
+  const initialState = {
     title: "",
     amount: "",
     category: "",
     description: "",
     date: ""
-  })
+  };
 
+    const [inputState, setInputState] = React.useState(initialState);
     const {title, amount, category, description, date} = inputState
 
     const handleInput = (name) => (e) => {
@@ -60,11 +61,6 @@ function Form() {
       return isValid
     }
 
-    const fetchExpenses = async () => {
-      axios.get('http://localhost:5000/api/v1/get-expense')
-      .then((response) => setData(response.data))
-      .catch((error) => console.log(error))
-    }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -79,8 +75,9 @@ function Form() {
       })
       return console.log(validateForm())
     }
-    // addExpenses(inputState)
-    console.log("inputState", inputState)
+    addExpenses(inputState)
+    // console.log("inputState", inputState)
+    setInputState(initialState);
     setShowAlert(true);
     fetchExpenses()
 

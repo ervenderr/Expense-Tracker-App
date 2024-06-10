@@ -3,10 +3,15 @@ import { LineChart } from 'lucide-react'
 import { useGlobalContext } from '../../context/global'
 import Form from '../Form/ExpenseForm'
 import TableData from './TableData'
+import { useEffect } from 'react'
 
 const Expenses = () => {
 
-  const {addExpense} = useGlobalContext()
+  const {addExpense, fetchExpenses} = useGlobalContext()
+
+  useEffect(() => {
+    fetchExpenses();
+  }, [fetchExpenses]);
 
   return (
 

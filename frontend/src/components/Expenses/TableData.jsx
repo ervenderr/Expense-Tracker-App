@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Box, Checkbox } from '@mui/material'
 import DataTable from 'react-data-table-component'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import axios from 'axios';
+import { useGlobalContext } from '../../context/global';
 
 const sortIcon = <ArrowDownwardIcon />;
 const selectProps = { indeterminate: isIndeterminate => isIndeterminate };
@@ -53,21 +53,17 @@ function TableData() {
     },
     {
       name: 'Date',
-      selector: row => row.date,
+      selector: row => new Date(row.date).toLocaleDateString()
+    },
+    {
+      name: 'Action',
+      selector: row => <button onClick={() => deleteExpenses(row._id)}
+      className=' bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-700 active:bg-red-500'>Delete</button>
     },
   ];
   
-  const [data, setData] = React.useState([])
 
-
-  useEffect(() => {
-    const fetchExpenses = async () => {
-      axios.get('http://localhost:5000/api/v1/get-expense')
-      .then((response) => setData(response.data))
-      .catch((error) => console.log(error))
-    }
-    fetchExpenses()
-  }, [])
+  const { expenses, deleteExpenses } = useGlobalContext()
 
 
   return (
@@ -88,7 +84,7 @@ function TableData() {
             }}>
             <DataTable
               columns={columns}
-              data={data}
+              data={expenses}
               fontSize='16px'
               pagination
               selectableRowsComponent={Checkbox}
