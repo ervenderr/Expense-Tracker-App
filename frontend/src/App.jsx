@@ -6,46 +6,68 @@ import Transaction from './components/Transaction/Transaction'
 import Expenses from './components/Expenses/Expenses'
 import Income  from './components/Income/Income'
 import Setting from './components/Settings/Setting'
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useGlobalContext } from './context/global'
+import { Amplify } from 'aws-amplify';
 
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
-function App() {
+import awsExports from './aws-exports';
+Amplify.configure(awsExports);
+
+function App({ signOut, user }) {
+
 
   const [activeLink, setActiveLink] = React.useState(0)
 
   const global = useGlobalContext();
 
-  const displayMainContent = () => {
+  const location = useLocation();
 
-    switch (activeLink) {
-      case 0:
-        return <Dashboard/>
-      case 1:
-        return <Transaction/>
-      case 2:
-        return <Expenses/>
-      case 3:
-        return <Income/>
-      case 4:
-        return <Setting/>
+  useEffect(() => {
+    const path = location.pathname.split('/')[1];
+    switch (path) {
+      case 'transaction':
+        setActiveLink(1);
+        break;
+      case 'expenses':
+        setActiveLink(2);
+        break;
+      case 'income':
+        setActiveLink(3);
+        break;
+      case 'setting':
+        setActiveLink(4);
+        break;
       default:
-        return activeLink
+        setActiveLink(0);
+        break;
     }
-  }
+  }, [location]);
 
   return (
     <>
     <div className='flex'>
       {/* Navigation bar */}
-        <Sidebar activeLink={activeLink} setActiveLink={setActiveLink}/>
+        <Sidebar activeLink={activeLink} setActiveLink={setActiveLink} signOut={signOut} user={user}/>
     
       {/* Main Content */}
       <main className='flex-1'>
-        {displayMainContent()}
+      <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/transaction" element={<Transaction />} />
+            <Route path="/expenses" element={<Expenses />} />
+            <Route path="/income" element={<Income />} />
+            <Route path="/setting" element={<Setting />} />
+          </Routes>
       </main>
     </div>
     </>
   )
 }
 
-export default App
+export default withAuthenticator (App);
+

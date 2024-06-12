@@ -4,13 +4,15 @@ import Profile from '../assets/profile.jpg'
 import { motion } from 'framer-motion'
 import { navLinks } from './Utils/NavLinks'
 import { ChevronRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
+
 
 const variants = {
   open: { width: "20rem" },
   closed: { width: "5rem" },
 }
 
-function Sidebar ({activeLink, setActiveLink}) {
+function Sidebar ({activeLink, setActiveLink, signOut, user}) {
   const [isOpen, setIsOpen] = React.useState(true)
   
   return (
@@ -32,15 +34,16 @@ function Sidebar ({activeLink, setActiveLink}) {
         <div className='mt-8'>
           <div className='flex flex-col justify-center items-center'>
             <img src={Profile} className={'rounded-full border border-r-1 mb-3' + (isOpen ? ' w-20' : ' w-14')}/>
-            <span className={isOpen ? 'text-center text-xl font-bold' : 'hidden'}>Ervender</span>
+            <span className={isOpen ? 'text-center text-xl font-bold' : 'hidden'}>{user.email}</span>
             <span className='text-center text-sm text-tertiary'>Software Developer</span>
           </div>
         </div>
 
         <div className='mt-12 flex flex-col space-y-8'>
           {navLinks.map((link, index) => (
-            <div 
+            <Link 
             key={index}
+            to={link.link}
             className={'flex items-center gap-7 cursor-pointer p-2 rounded' + 
             (activeLink === index ? ' bg-primary text-yellow' : ' text-tertiary') + 
             ' hover:bg-primary hover:text-yellow'} 
@@ -48,9 +51,11 @@ function Sidebar ({activeLink, setActiveLink}) {
             >
               <link.icon/>
               <span className={isOpen ? 'block' : 'hidden'}>{link?.name}</span>
-            </div>
+            </Link>
           ))}
+
         </div>
+        <button className='bg-primary text-yellow mt-52 py-2' onClick={signOut}>Sign out</button>
     </motion.div>
   )
 }
