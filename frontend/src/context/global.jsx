@@ -37,12 +37,21 @@ export const GlobalProvider = ({children}) => {
         }
     }
 
+    // write a function to add income below
+    const addIncome = async (income) => {
+        const response = await axios.post(`${baseURL}/add-income`, income)
+            .catch((error) => {
+                setError(error.response.data.message)
+            })
+    }
+
     return (
         <GlobalContext.Provider value={{
             expenses,
             addExpenses,
             fetchExpenses,
             deleteExpenses,
+            addIncome,
         }}>
             {children}
         </GlobalContext.Provider>
