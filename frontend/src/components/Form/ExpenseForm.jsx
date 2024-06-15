@@ -93,7 +93,7 @@ function Form() {
   
 
   return (
-    <div className='w-full py-8 px-4 sm:px-10 border flex flex-col justify-center items-center my-5 mt-14 rounded-md' onSubmit={handleSubmit}>
+    <div className='w-full py-8 px-4 sm:px-10 border flexflex-col justify-center items-center my-5 mt-14 rounded-md bg-secondary' onSubmit={handleSubmit}>
       <h1 className='text-3xl font-extrabold mb-5'>Add Expenses</h1>
       {showAlert && <SimpleAlert message="Expense added successfully!" onClose={closeAlert} />}
       <div className='w-full mb-4'>

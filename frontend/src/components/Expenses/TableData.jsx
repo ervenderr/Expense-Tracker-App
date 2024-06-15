@@ -68,7 +68,7 @@ function TableData() {
 
   return (
     <div className='lg:col-span-2 col-span-2 w-full py-5'>
-        <p className='text-2xl text-center mb-1 font-semibold text-primary'>TRANSACTION</p>
+        {/* <p className='text-2xl text-center mb-1 font-semibold text-primary'>TRANSACTION</p> */}
         <Box
             sx={{
                 display: 'flex flex-col',
