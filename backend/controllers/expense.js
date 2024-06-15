@@ -48,3 +48,20 @@ exports.deleteExpense = async (req, res) => {
             res.status(500).json({ message: error.message })
         })
     }
+
+exports.updateExpense = async (req, res) => {
+    const { id } = req.params
+    const { title, amount, category, description, date } = req.body
+    try {
+        const expense = await ExpenseSchema.findById(id)
+        expense.title = title
+        expense.amount = amount
+        expense.category = category
+        expense.description = description
+        expense.date = date
+        await expense.save()
+        res.status(200).json({ message: "Expense updated successfully" })
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+}

@@ -14,6 +14,7 @@ const customStyles = {
       fontWeight: 'bold',
       color: '#f1c40f',
       backgroundColor: '#2c2b30',
+
     },
   },
   headRows: {
@@ -57,13 +58,27 @@ function TableData() {
     },
     {
       name: 'Action',
-      selector: row => <button onClick={() => deleteExpenses(row._id)}
-      className=' bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-700 active:bg-red-500'>Delete</button>
+      cell: row => (
+        <div>
+          <button 
+            onClick={() => updateExpenses(row._id)}
+            className='bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-700 active:bg-blue-500 mr-2'
+          >
+            Update
+          </button>
+          <button 
+            onClick={() => deleteExpenses(row._id)}
+            className='bg-red-500 text-white px-2 py-1 rounded-md hover:bg-red-700 active:bg-red-500'
+          >
+            Delete
+          </button>
+        </div>
+      )
     },
   ];
   
 
-  const { expenses, deleteExpenses } = useGlobalContext()
+  const { expenses, deleteExpenses, updateExpenses } = useGlobalContext()
 
 
   return (

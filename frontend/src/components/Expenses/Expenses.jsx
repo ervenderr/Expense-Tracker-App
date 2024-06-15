@@ -1,12 +1,12 @@
 import React from 'react'
 import { LineChart } from 'lucide-react'
 import { useGlobalContext } from '../../context/global'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Form from '../Form/ExpenseForm'
 import TableData from './TableData'
 import { useEffect } from 'react'
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
 const Expenses = () => {
@@ -25,9 +25,17 @@ const Expenses = () => {
 
     <div className='py-12 px-4 sm:px-10 w-full h-screen'>
       <h1 className='text-3xl font-extrabold text-primary'>Expenses <LineChart className='text-yellow inline mb-2' /></h1>
-      <div className='grid lg:grid-cols-3 gap-5'>
+      <div className='flex justify-end'>
+        <Button className='' 
+          color='success' 
+          variant="contained"
+          startIcon={<AddCircleOutlineIcon />}
+          onClick={handleOpen}>
+            Add Expenses
+        </Button>
+      </div>
+      <div className=''>
         <TableData className='' />
-        <Button onClick={handleOpen}>Open modal</Button>
         <Modal
           open={open}
           onClose={handleClose}
@@ -39,7 +47,6 @@ const Expenses = () => {
               <Form addExpense={addExpense} />
           </Box>
         </Modal>
-        {/* <Form addExpense={addExpense} /> */}
       </div>
     </div>
   )

@@ -29,8 +29,19 @@ export const GlobalProvider = ({children}) => {
 
     const deleteExpenses = async (id) => {
         try {
-            confirm("Are you sure you want to delete this expense?");
-            const response = await axios.delete(`${baseURL}/delete-expense/${id}`);
+            const alerts = confirm("Are you sure you want to delete this expense?");
+            if (alerts === true) {
+                const response = await axios.delete(`${baseURL}/delete-expense/${id}`);
+            }
+            fetchExpenses();
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const updateExpenses = async (id) => {
+        try {
+            const response = await axios.put(`${baseURL}/update-expense/${id}`);
             fetchExpenses();
         } catch (error) {
             console.error(error);
