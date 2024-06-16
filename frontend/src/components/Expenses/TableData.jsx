@@ -33,7 +33,9 @@ const customStyles = {
   },
 }
 
-function TableData() {
+function TableData({setOpenUpdate}) {
+
+  const handleOpenUpdate = () => setOpenUpdate(true);
 
   const columns = [
     {
@@ -61,7 +63,7 @@ function TableData() {
       cell: row => (
         <div>
           <button 
-            onClick={() => updateExpenses(row._id)}
+            onClick={handleOpenUpdate}
             className='bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-700 active:bg-blue-500 mr-2'
           >
             Update

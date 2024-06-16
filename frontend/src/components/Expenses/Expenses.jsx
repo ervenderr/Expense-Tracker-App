@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
+import UpdateForm from '../Form/updateExpense';
 
 const Expenses = () => {
 
@@ -20,6 +21,10 @@ const Expenses = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [openUpdate, setOpenUpdate] = React.useState(false);
+ 
+  const handleCloseUpdate = () => setOpenUpdate(false);
 
   return (
 
@@ -35,18 +40,19 @@ const Expenses = () => {
         </Button>
       </div>
       <div className=''>
-        <TableData className='' />
-        <Modal
+        <TableData className='' 
+          setOpenUpdate={setOpenUpdate}
+        />
+        <Form
+          addExpense={addExpense}
           open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-          className='flex justify-center items-center w-full'
-        >
-          <Box className='flex justify-center items-center'>
-              <Form addExpense={addExpense} />
-          </Box>
-        </Modal>
+          handleClose={handleClose}
+        />
+        <UpdateForm
+          addExpense={addExpense}
+          openUpdate={openUpdate}
+          handleCloseUpdate={handleCloseUpdate}
+          />
       </div>
     </div>
   )
