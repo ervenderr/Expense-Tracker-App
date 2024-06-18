@@ -63,7 +63,7 @@ function TableData({setOpenUpdate}) {
       cell: row => (
         <div>
           <button 
-            onClick={handleOpenUpdate}
+            onClick={() => handleOpenUpdate()}
             className='bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-700 active:bg-blue-500 mr-2'
           >
             Update
