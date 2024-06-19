@@ -41,7 +41,8 @@ const Expenses = () => {
 
     <div className='py-12 px-4 sm:px-10 w-full h-screen'>
       <h1 className='text-3xl font-extrabold text-primary'>Expenses <LineChart className='text-yellow inline mb-2' /></h1>
-      <div className='flex justify-end'>
+      <div className='flex justify-between items-center mt-10'>
+        <p className='text-xl font-semibold text-center'>Transactions</p>
         <Button className=''
           color='success'
           variant="contained"
