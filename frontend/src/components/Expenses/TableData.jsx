@@ -35,7 +35,7 @@ const customStyles = {
 
 function TableData({setOpenUpdate}) {
 
-  const handleOpenUpdate = () => setOpenUpdate(true);
+  const { expenses, deleteExpenses } = useGlobalContext();
 
   const columns = [
     {
@@ -63,7 +63,7 @@ function TableData({setOpenUpdate}) {
       cell: row => (
         <div>
           <button 
-            onClick={() => handleOpenUpdate()}
+            onClick={() => setOpenUpdate(row)}
             className='bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-700 active:bg-blue-500 mr-2'
           >
             Update
@@ -79,10 +79,6 @@ function TableData({setOpenUpdate}) {
     },
   ];
   
-
-  const { expenses, deleteExpenses, updateExpenses } = useGlobalContext()
-
-
   return (
     <div className='lg:col-span-2 col-span-2 w-full py-5'>
         {/* <p className='text-2xl text-center mb-1 font-semibold text-primary'>TRANSACTION</p> */}

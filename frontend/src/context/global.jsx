@@ -39,14 +39,14 @@ export const GlobalProvider = ({children}) => {
         }
     }
 
-    const updateExpenses = async (id) => {
+    const updateExpenses = async (expense) => {
         try {
-            const response = await axios.put(`${baseURL}/update-expense/${id}`);
+            const response = await axios.put(`${baseURL}/update-expense/${expense._id}`, expense);
             fetchExpenses();
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const addIncome = async (income) => {
         const response = await axios.post(`${baseURL}/add-income`, income)
@@ -69,6 +69,7 @@ export const GlobalProvider = ({children}) => {
             addExpenses,
             fetchExpenses,
             deleteExpenses,
+            updateExpenses,
             addIncome,
         }}>
             {children}

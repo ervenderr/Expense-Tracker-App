@@ -5,10 +5,11 @@ import { useGlobalContext } from '../../context/global';
 import SimpleAlert from '../../Alert/PopupAlert';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box'
+import { useEffect } from 'react'
 
 
 
-function UpdateForm({ openUpdate, handleCloseUpdate, updateExpense }) {
+function UpdateForm({ openUpdate, handleCloseUpdate, expense }) {
 
     const { updateExpenses, fetchExpenses } = useGlobalContext()
     const initialState = {
@@ -21,6 +22,10 @@ function UpdateForm({ openUpdate, handleCloseUpdate, updateExpense }) {
 
     const [inputState, setInputState] = React.useState(initialState);
     const { title, amount, category, description, date } = inputState
+
+    useEffect(() => {
+        setInputState(expense || initialState);
+      }, [expense]);
 
     const handleInput = (name) => (e) => {
         setInputState({ ...inputState, [name]: e.target.value })
@@ -78,9 +83,8 @@ function UpdateForm({ openUpdate, handleCloseUpdate, updateExpense }) {
             })
             return console.log(validateForm())
         }
-        // updateExpense(inputState)
+        updateExpenses(inputState)
         console.log("inputState", inputState)
-        setInputState(initialState);
         setShowAlert(true);
         fetchExpenses()
 
@@ -106,7 +110,7 @@ function UpdateForm({ openUpdate, handleCloseUpdate, updateExpense }) {
             <Box className='flex justify-center items-center'>
                 <div className='w-full py-8 px-4 sm:px-10 border flexflex-col justify-center items-center my-5 mt-14 rounded-md bg-secondary' onSubmit={handleSubmit}>
                     <h1 className='text-3xl font-extrabold mb-5'>Update Expense</h1>
-                    {showAlert && <SimpleAlert message="Expense added successfully!" onClose={closeAlert} />}
+                    {showAlert && <SimpleAlert message="Expense updated successfully!" onClose={closeAlert} />}
                     <div className='w-full mb-4'>
                         <input
                             type="text"

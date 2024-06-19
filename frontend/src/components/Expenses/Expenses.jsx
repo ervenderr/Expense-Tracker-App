@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import UpdateForm from '../Form/updateExpense';
+import { useState } from 'react';
 
 const Expenses = () => {
 
@@ -23,25 +24,35 @@ const Expenses = () => {
   const handleClose = () => setOpen(false);
 
   const [openUpdate, setOpenUpdate] = React.useState(false);
- 
-  const handleCloseUpdate = () => setOpenUpdate(false);
+
+  const [selectedExpense, setSelectedExpense] = useState(null);
+
+  const handleOpenUpdate = (expense) => {
+    setSelectedExpense(expense);
+    setOpenUpdate(true);
+  };
+
+  const handleCloseUpdate = () => {
+    setOpenUpdate(false);
+    setSelectedExpense(null);
+  };
 
   return (
 
     <div className='py-12 px-4 sm:px-10 w-full h-screen'>
       <h1 className='text-3xl font-extrabold text-primary'>Expenses <LineChart className='text-yellow inline mb-2' /></h1>
       <div className='flex justify-end'>
-        <Button className='' 
-          color='success' 
+        <Button className=''
+          color='success'
           variant="contained"
           startIcon={<AddCircleOutlineIcon />}
           onClick={handleOpen}>
-            Add Expenses
+          Add Expenses
         </Button>
       </div>
       <div className=''>
-        <TableData className='' 
-          setOpenUpdate={setOpenUpdate}
+        <TableData className=''
+          setOpenUpdate={handleOpenUpdate}
         />
         <Form
           addExpense={addExpense}
@@ -49,10 +60,10 @@ const Expenses = () => {
           handleClose={handleClose}
         />
         <UpdateForm
-          addExpense={addExpense}
           openUpdate={openUpdate}
           handleCloseUpdate={handleCloseUpdate}
-          />
+          expense={selectedExpense}
+        />
       </div>
     </div>
   )
