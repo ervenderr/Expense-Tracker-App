@@ -1,5 +1,5 @@
 
-import {LayoutDashboard, BadgeDollarSign, LineChart, AreaChart, Settings, ChevronRight} from "lucide-react"
+import {LayoutDashboard, BadgeDollarSign, LineChart, AreaChart, Settings, ClipboardMinus, } from "lucide-react"
 
 export {LayoutDashboard}
 export {BadgeDollarSign}
@@ -16,21 +16,21 @@ export const navLinks = [
   },
   {
     id: 2,
-    name: "Transactions",
-    icon: BadgeDollarSign,
-    link: "/transactions",
-  },
-  {
-    id: 3,
     name: "Expenses",
     icon: LineChart,
     link: "/expenses",
   },
   {
-    id: 4,
+    id: 3,
     name: "Income",
-    icon: AreaChart,
+    icon: BadgeDollarSign,
     link: "/income",
+  },
+  {
+    id: 4,
+    name: "Reports",
+    icon: ClipboardMinus,
+    link: "/reports",
   },
   {
     id: 5,

@@ -2,7 +2,7 @@ import React from 'react'
 import './App.css'
 import Dashboard from './components/Dashboard/Dashboard'
 import Sidebar from './components/sidebar'
-import Transaction from './components/Transaction/Transaction'
+import Transaction from './components/Reports/Reports'
 import Expenses from './components/Expenses/Expenses'
 import Income  from './components/Income/Income'
 import Setting from './components/Settings/Setting'
@@ -29,15 +29,15 @@ function App({ signOut, user }) {
   useEffect(() => {
     const path = location.pathname.split('/')[1];
     switch (path) {
-      case 'transaction':
+      case 'expenses':
         setActiveLink(1);
         break;
-      case 'expenses':
+      case 'income':
         setActiveLink(2);
         break;
-      case 'income':
-        setActiveLink(3);
-        break;
+        case 'reports':
+          setActiveLink(3);
+          break;
       case 'setting':
         setActiveLink(4);
         break;
@@ -58,9 +58,9 @@ function App({ signOut, user }) {
       <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/transaction" element={<Transaction />} />
             <Route path="/expenses" element={<Expenses />} />
             <Route path="/income" element={<Income />} />
+            <Route path="/reports" element={<Transaction />} />
             <Route path="/setting" element={<Setting />} />
           </Routes>
       </main>

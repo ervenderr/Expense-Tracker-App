@@ -58,8 +58,21 @@ export const GlobalProvider = ({children}) => {
     const fetchIncome = async () => {
         try {
             const response = await axios.get(`${baseURL}/get-income`)
+            setIncome(response.data);
         } catch (error) {
             console.error(error)
+        }
+    }
+
+    const deleteIncome = async (id) => {
+        try {
+            const alerts = confirm("Are you sure you want to delete this income?");
+            if (alerts === true) {
+                const response = await axios.delete(`${baseURL}/delete-income/${id}`);
+            }
+            fetchIncome();
+        } catch (error) {
+            console.error(error);
         }
     }
 
@@ -70,8 +83,10 @@ export const GlobalProvider = ({children}) => {
             fetchExpenses,
             deleteExpenses,
             updateExpenses,
+            income,
             addIncome,
             fetchIncome,
+            deleteIncome,
         }}>
             {children}
         </GlobalContext.Provider>

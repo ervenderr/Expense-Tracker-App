@@ -55,7 +55,7 @@ function Sidebar ({activeLink, setActiveLink, signOut, user}) {
           ))}
 
         </div>
-        <button className='bg-primary text-yellow mt-52 py-2' onClick={signOut}>Sign out</button>
+        <button className='bg-secondary rounded-md text-yellow border border-gray-300 mt-52 py-2 font-semibold hover:bg-primary hover:text-yellow' onClick={signOut}>Sign out</button>
     </motion.div>
   )
 }
