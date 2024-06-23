@@ -76,6 +76,15 @@ export const GlobalProvider = ({children}) => {
         }
     }
 
+    const updateIncome = async (income) => {
+        try {
+            const response = await axios.put(`${baseURL}/update-income/${income._id}`, income);
+            fetchIncome();
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     return (
         <GlobalContext.Provider value={{
             expenses,
@@ -87,6 +96,7 @@ export const GlobalProvider = ({children}) => {
             addIncome,
             fetchIncome,
             deleteIncome,
+            updateIncome,
         }}>
             {children}
         </GlobalContext.Provider>

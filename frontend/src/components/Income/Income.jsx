@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-// import UpdateForm from '../Form/updateIncome';
+import UpdateForm from '../Form/updateIncome';
 import { useState } from 'react';
 
 const Income = () => {
@@ -27,14 +27,14 @@ const Income = () => {
 
   const [selectedIncome, setSelectedIncome] = useState(null);
 
-  const handleOpenUpdate = (Incom) => {
-    setSelectedIncom(Incom);
+  const handleOpenUpdate = (income) => {
+    setSelectedIncome(income);
     setOpenUpdate(true);
   };
 
   const handleCloseUpdate = () => {
     setOpenUpdate(false);
-    setSelectedIncom(null);
+    setSelectedIncome(null);
   };
 
 
@@ -61,11 +61,11 @@ const Income = () => {
           open={open}
           handleClose={handleClose}
         />
-        {/* <UpdateForm
+        <UpdateForm
           openUpdate={openUpdate}
           handleCloseUpdate={handleCloseUpdate}
-          Income={selectedIncome}
-        /> */}
+          income={selectedIncome}
+        />
       </div>
     </div>
   )

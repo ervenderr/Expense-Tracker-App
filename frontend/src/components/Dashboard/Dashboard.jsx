@@ -2,16 +2,15 @@ import React from 'react';
 import { AudioLines, TrendingDown, TrendingUp } from "lucide-react";
 import Chart from './Chart';
 import TransactionHistory from './TransactionHistory';
-import { LayoutDashboard } from '../Utils/NavLinks'
+import PieChartTrans from './PieChartTrans';
+import { LayoutDashboard } from '../Utils/NavLinks';
 
 const Dashboard = () => {
-
-    
-
     return (
-
         <div className='py-12 px-4 sm:px-10 w-full h-screen'>
-            <h1 className='text-3xl font-extrabold justify-center items-center text-primary'>Dashboard <LayoutDashboard  className='text-yellow inline mb-2'/></h1>
+            <h1 className='text-3xl font-extrabold justify-center items-center text-primary flex'>
+                Dashboard <LayoutDashboard className='text-yellow inline mb-2' />
+            </h1>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5'>
                 <div className='lg:col-span-2 col-span-3 w-full py-5'>
                     <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5'>
@@ -57,8 +56,11 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <div className='lg:col-span-1 col-span-3 h-full w-full mt-5'>
-                    <div className='h-full'>
+                <div className='lg:col-span-1 col-span-3 w-full'>
+                    <div className='mt-10 flex flex-col items-center'>
+                        <div className='border rounded-lg p-5 mb-5 flex justify-center items-center w-full'>
+                            <PieChartTrans />
+                        </div>
                         <TransactionHistory />
                     </div>
                 </div>
